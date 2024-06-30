@@ -30,12 +30,12 @@ const formSchema = z.object({
             message: "Description must be at least 20 characters.",
         })
         .max(100),
-    language: z
+    tags: z
         .string()
         .min(1, {
             message: "Language must be at least 1 character.",
         })
-        .max(20),
+        .max(50),
     githubRepo: z
         .string()
         .min(20, {
@@ -52,7 +52,7 @@ export function CreateRoomForm() {
         defaultValues: {
             name: "",
             description: "",
-            language: "",
+            tags: "",
             githubRepo: "",
         },
     });
@@ -75,7 +75,10 @@ export function CreateRoomForm() {
                         <FormItem>
                             <FormLabel>Room Name</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder="Solving a challenging project."
+                                />
                             </FormControl>
                             <FormDescription>
                                 This is your public room name.
@@ -91,7 +94,10 @@ export function CreateRoomForm() {
                         <FormItem>
                             <FormLabel>Description</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder="Come join me on this project."
+                                />
                             </FormControl>
                             <FormDescription>
                                 Please describe your project.
@@ -102,15 +108,20 @@ export function CreateRoomForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="language"
+                    name="tags"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Language</FormLabel>
+                            <FormLabel>Tags</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder="python, numpy, flask"
+                                />
                             </FormControl>
                             <FormDescription>
-                                Please mention the primary programming language.
+                                Please mention the programming languages,
+                                frameworks, libraries so that people can find
+                                your content.
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -123,7 +134,10 @@ export function CreateRoomForm() {
                         <FormItem>
                             <FormLabel>Github Repository Link</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                    {...field}
+                                    placeholder="https://www.github.com/your-user-name/project-name"
+                                />
                             </FormControl>
                             <FormDescription>
                                 Please provide the link to the github repo you
