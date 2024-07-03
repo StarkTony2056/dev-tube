@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { editRoomAction } from "./actions";
 import { useParams } from "next/navigation";
 import { Room } from "@/db/schema";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
     name: z
@@ -61,6 +62,10 @@ export function EditRoomForm({ room }: { room: Room }) {
     async function onSubmit(values: z.infer<typeof formSchema>) {
         // invoke a server action to store the data in our database
         await editRoomAction({ id: params.roomId as string, ...values });
+        toast({
+            title: "Room Updated!",
+            description: "Your room was successfully updated.",
+        });
     }
 
     return (
