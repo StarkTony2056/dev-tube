@@ -2,7 +2,6 @@ import { db } from "@/db";
 import { Room, room } from "@/db/schema";
 import { getSession } from "@/lib/auth";
 import { eq, like } from "drizzle-orm";
-import { unstable_noStore } from "next/cache";
 
 export async function getRooms(search: string | undefined) {
     // mark a function as dynamic so that if any of the component tree depends on that, it will mark the entire route as dynamic
